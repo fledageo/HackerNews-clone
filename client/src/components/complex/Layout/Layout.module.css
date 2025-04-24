@@ -1,0 +1,16 @@
+
+.wrapper{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+.container{
+    width: 80%;
+    margin: 20px;
+}
+.main{
+    background-color: #F3D9C7;
+    height: 100%;
+    padding: 5px;
+}

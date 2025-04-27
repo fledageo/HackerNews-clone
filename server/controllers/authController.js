@@ -14,15 +14,19 @@ class AuthController {
             } else {
                 const user = new User({
                     ...data,
+                    created: new Date(Date.now()).toLocaleDateString(),
+                    about:"",
+                    email:"",
+                    karma:1,
                     password: await bcrypt.hash(data.password, 8)
                 })
                 const newUser = await user.save()
                 const token = jwt.sign({ userId: newUser._id }, JWT_SECRET, { expiresIn: "60m" })
-                res.cookie('token', token, {    
+                res.cookie('token', token, {
                     httpOnly: true,
                     maxAge: 60 * 60 * 1000,
                 })
-                res.send({ status: "ok", message: "User has been registered successfuly", payload:newUser })
+                res.send({ status: "ok", message: "User has been registered successfuly", payload: newUser })
             }
         } catch (error) {
             console.log(error)
@@ -45,7 +49,7 @@ class AuthController {
                         httpOnly: true,
                         maxAge: 60 * 60 * 1000,
                     })
-                    res.send({ status: 'ok', message: "Successfuly login", payload:userExist })
+                    res.send({ status: 'ok', message: "Successfuly login", payload: userExist })
                 }
 
             }
@@ -54,9 +58,9 @@ class AuthController {
         }
     }
 
-    async verifyAuth(req,res){
+    async verifyAuth(req, res) {
         const token = req.cookies.token
-        
+
         if (!token) {
             return res.send({ status: "error", message: "Access denied!" })
         }
@@ -72,18 +76,27 @@ class AuthController {
         }
     }
 
-    async getUserById(req,res){
+    async getUserById(req, res) {
         const userId = req.params.userId
-        
+
         try {
             const user = await User.findById(userId)
-            if(!user){
-                res.send({status:"error",message:"Something went wrong..."})
-            }else{
-                res.send({status:"ok",payload:user})
+            if (!user) {
+                res.send({ status: "error", message: "Something went wrong..." })
+            } else {
+                res.send({ status: "ok", payload: user })
             }
         } catch (error) {
-            
+
+        }
+    }
+
+    async logout(req, res) {
+        try {
+            res.clearCookie("token")
+            res.send({ status: "ok", message: "logout" })
+        } catch (error) {
+            console.log(error)
         }
     }
 }

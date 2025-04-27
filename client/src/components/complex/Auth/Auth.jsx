@@ -24,7 +24,7 @@ export const Auth = () => {
       username: data.reg_username,
       password: data.reg_password
     }).then(res => {
-      if (res.status = "ok") {
+      if (res.status === "ok") {
         setUser(res.payload)
         navigate("/")
       }
@@ -37,7 +37,7 @@ export const Auth = () => {
       password: data.login_password
     })
       .then(res => {
-        if (res.status = "ok") {
+        if (res.status === "ok") {
           setUser(res.payload)
           navigate("/")
         }

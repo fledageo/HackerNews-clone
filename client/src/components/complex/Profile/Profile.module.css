@@ -1,0 +1,9 @@
+.title{
+    width: 100px;
+    display: flex;
+    margin-bottom: 10px;
+}
+.field{
+    width: 300px;
+    min-height: 25px;
+}

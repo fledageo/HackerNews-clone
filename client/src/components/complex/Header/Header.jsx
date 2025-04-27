@@ -1,9 +1,20 @@
 import React, { useContext } from 'react'
 import styles from "./Header.module.css"
 import { UserContext } from '../Layout/Layout'
+import { logoutUser } from '../../../lib/api'
+import { Link } from 'react-router'
 
 export const Header = () => {
-    const { user } = useContext(UserContext)
+    const { user,setUser } = useContext(UserContext)
+
+    const handleLogout = () => {
+        logoutUser()
+        .then(res => {
+            if(res.status === "ok"){
+                setUser(null)
+            }
+        })
+    }
 
     return (
         <div className={styles.wrapper}>
@@ -17,24 +28,24 @@ export const Header = () => {
                     </div>
                     <nav className={styles.nav}>
                         <ul className={styles.list}>
-                            <li><a href="">new</a></li>
-                            <li><a href="">past</a></li>
-                            <li><a href="">comments</a></li>
-                            <li><a href="">ask</a></li>
-                            <li><a href="">show</a></li>
-                            <li><a href="">jobs</a></li>
-                            <li><a href="">submit</a></li>
+                            <li><Link to="#">new</Link></li>
+                            <li><Link to="#">past</Link></li>
+                            <li><Link to="#">comments</Link></li>
+                            <li><Link to="#">ask</Link></li>
+                            <li><Link to="#">show</Link></li>
+                            <li><Link to="#">jobs</Link></li>
+                            <li><Link to="/auth">submit</Link></li>
                         </ul>
                     </nav>
                 </div>
                 <div className={styles.user}>
                     {
                         user ? <>
-                            <a href="/account">{user.username}</a>
-                            <a href="" className={styles.login}>logout</a>
+                            <Link to="/account">{user.username}</Link>
+                            <Link to="/" onClick={handleLogout} className={styles.login}>logout</Link>
                         </>
-                            :
-                            <a href="/auth" className={styles.login}>login</a>
+                        :
+                        <Link to="/auth" className={styles.login}>login</Link>
                     }
                 </div>
             </div>

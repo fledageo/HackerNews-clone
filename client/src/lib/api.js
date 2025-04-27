@@ -4,7 +4,7 @@ export async function userRegistration(user) {
         const response = await fetch(`${url}/auth/registration`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",  
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(user)
         })
@@ -49,6 +49,18 @@ export async function getUserById(id) {
         const response = await fetch(`${url}/auth/user/${id}`, {
             method: "GET",
             credentials: "include",
+        })
+        return response.json()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function logoutUser() {
+    try {
+        const response = await fetch(`${url}/auth/logout`, {
+            method:"GET",
+            credentials: "include"
         })
         return response.json()
     } catch (error) {

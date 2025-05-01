@@ -24,9 +24,11 @@
     justify-content: center;
     align-items: center;
     color: bisque;
+    cursor: pointer;
 }
 .logo_name{
     font-size: 1rem;
+    cursor: pointer;
 }
 .nav{
     display: flex;
@@ -36,9 +38,10 @@
     display: flex;
     gap: 10px;
 }
-.list > li {
+.list > li,.privateNav {
     border-right: 1px solid;
     padding-right: 5px;
+    cursor: pointer;
 }
 .list > li:last-child {
     border-right: none;

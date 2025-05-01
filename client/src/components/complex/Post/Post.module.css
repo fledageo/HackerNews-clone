@@ -1,0 +1,23 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.content_text {
+    color: grey;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add_field {
+    min-width: 300px;
+    width: 400px;
+}
+
+.add_btn {
+    width: 100px;
+}

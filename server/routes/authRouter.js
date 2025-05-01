@@ -7,5 +7,5 @@ router.post("/registration", authController.registration);
 router.post("/login", authController.login);
 router.get("/logout",authController.logout)
 router.get("/verify",authController.verifyAuth)
-router.get("/user/:userId",authController.getUserById)
+
 module.exports = router;

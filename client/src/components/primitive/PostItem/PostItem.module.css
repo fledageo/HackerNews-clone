@@ -1,0 +1,28 @@
+.container{
+    width: 100%;
+    min-height: 40px;
+}
+.header{
+    display: flex;
+    gap: 20px;
+}
+.url{
+    font-size: 0.8rem;
+    color: gray;
+    display: flex;
+    align-items: center;
+}
+.url:hover{
+    text-decoration: underline;
+}
+.actions{
+    display: flex;
+    gap: 7px;
+}
+.actions  *{
+    font-size: 0.7rem;
+    color: grey;
+}
+.actions a:hover {
+    text-decoration: underline;
+}

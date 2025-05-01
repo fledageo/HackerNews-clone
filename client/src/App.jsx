@@ -1,9 +1,11 @@
-import React from 'react'
+import "./globals.css"
 import { createBrowserRouter, RouterProvider } from "react-router"
 import { Layout } from './components/complex/Layout/Layout'
-import "./globals.css"
 import { Auth } from './components/complex/Auth/Auth'
 import { Profile } from './components/complex/Profile/Profile'
+import { AddPost } from './components/complex/AddPost/AddPost'
+import { Newest } from './components/complex/Newest/Newest'
+import { Post } from "./components/complex/Post/Post"
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,18 @@ const router = createBrowserRouter([
       {
         path:"/account",
         element:<Profile/>
+      },
+      {
+        path:"/post/add",
+        element:<AddPost/>
+      },
+      {
+        path:"/newest",
+        element:<Newest/>
+      },
+      {
+        path:"/post/:id",
+        element:<Post/>
       }
     ]
   }

@@ -12,7 +12,7 @@ class AuthController {
             if (usernameExist) {
                 res.send({ status: "Error", message: "Username already exist" })
             } else {
-                const user = new User({
+                const newUser = await User.create({
                     ...data,
                     created: new Date(Date.now()).toLocaleDateString(),
                     about:"",
@@ -20,7 +20,7 @@ class AuthController {
                     karma:1,
                     password: await bcrypt.hash(data.password, 8)
                 })
-                const newUser = await user.save()
+
                 const token = jwt.sign({ userId: newUser._id }, JWT_SECRET, { expiresIn: "60m" })
                 res.cookie('token', token, {
                     httpOnly: true,
@@ -76,20 +76,6 @@ class AuthController {
         }
     }
 
-    async getUserById(req, res) {
-        const userId = req.params.userId
-
-        try {
-            const user = await User.findById(userId)
-            if (!user) {
-                res.send({ status: "error", message: "Something went wrong..." })
-            } else {
-                res.send({ status: "ok", payload: user })
-            }
-        } catch (error) {
-
-        }
-    }
 
     async logout(req, res) {
         try {

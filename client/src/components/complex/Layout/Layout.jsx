@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from 'react'
 import styles from "./Layout.module.css"
 import { Outlet, useLocation } from 'react-router'
 import { Header } from '../Header/Header'
-import { getUserById, verifyAuth } from '../../../lib/api'
+import { verifyAuth } from '../../../lib/api'
 
 export const UserContext = createContext()
 

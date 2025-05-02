@@ -167,12 +167,12 @@ export async function replyComment(data) {
 }
 export async function getPosts(type) {
     try {
-        const response = await fetch(`${url}/post/get`,{
-            method:"POST",
+        const response = await fetch(`${url}/post/get`, {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body:JSON.stringify({type:type})
+            body: JSON.stringify({ type: type })
         })
         return response.json()
     } catch (error) {
@@ -180,4 +180,17 @@ export async function getPosts(type) {
     }
 }
 
-
+export async function upvotePost(data) {
+    try {
+        const response = await fetch(`${url}/post/upvote`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        return response.json()
+    } catch (error) {
+        console.log(error)
+    }
+}

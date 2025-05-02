@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post("/add", PostController.add);
 router.post("/get",PostController.getPosts)
+router.post("/upvote",PostController.upvote)
 router.get("/get/newest", PostController.getNewest);
 router.get("/get/:id", PostController.getPostById);
 

@@ -7,7 +7,7 @@ const Post = new Schema({
     type: { type: String },
     createdAt: { type: Date, default: Date.now() },
     points: { type: Number },
-    pointsFrom: [{type: Schema.Types.ObjectId, ref:"user"}],
+    pointsFrom: [{type: Schema.Types.ObjectId, ref:"user", default:[]}],
     author: { type: Schema.Types.ObjectId, ref: "user" },
     comments: [{type: Schema.Types.ObjectId, ref:"comment"}]
 })

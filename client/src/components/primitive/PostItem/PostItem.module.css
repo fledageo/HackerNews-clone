@@ -1,32 +1,49 @@
-.container{
-    width: 100%;
-    min-height: 40px;
+.container {
+    display: flex;
+    gap: 10px;
 }
-.header{
+.upvote{
+    font-size: 1.2rem;
+    
+}
+.upvote > span {
+    cursor: pointer;
+}
+.post {
+    width: 100%;
+    /* min-height: 40px; */
+}
+
+.header {
     display: flex;
     gap: 20px;
 }
-.url{
+
+.url {
     font-size: 0.9rem;
     color: rgb(177, 115, 0);
     display: flex;
     align-items: center;
 }
-.url:hover{
+
+.url:hover {
     text-decoration: underline;
 }
-.actions{
+
+.actions {
     display: flex;
     gap: 7px;
 }
-.actions  *{
+
+.actions * {
     font-size: 0.8rem;
     color: grey;
 }
+
 .actions a:hover {
     text-decoration: underline;
 }
 
-.isUser{
+.isUser {
     color: green;
 }

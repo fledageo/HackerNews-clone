@@ -25,7 +25,7 @@ export const Auth = () => {
     }).then(res => {
       if (res.status === "ok") {
         setUser(res.payload)
-        navigate("/")
+        navigate("/news")
       }
     })
   }
@@ -38,7 +38,7 @@ export const Auth = () => {
       .then(res => {
         if (res.status === "ok") {
           setUser(res.payload)
-          navigate("/")
+          navigate("/news")
         }
       })
 

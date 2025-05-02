@@ -6,12 +6,23 @@ import { Profile } from './components/complex/Profile/Profile'
 import { AddPost } from './components/complex/AddPost/AddPost'
 import { Newest } from './components/complex/Newest/Newest'
 import { Post } from "./components/complex/Post/Post"
+import { Reply } from "./components/complex/Reply/Reply"
+import { News } from "./components/complex/News/News"
+import { Ask } from "./components/complex/Ask/Ask"
 
 const router = createBrowserRouter([
   {
     path:"/",
     element:<Layout/>,
     children:[
+      {
+        path:"/news",
+        element:<News/>
+      },
+      {
+        path:"/ask",
+        element:<Ask/>
+      },
       {
         path:"/auth",
         element:<Auth/>,
@@ -31,6 +42,10 @@ const router = createBrowserRouter([
       {
         path:"/post/:id",
         element:<Post/>
+      },
+      {
+        path:"/reply/:id",
+        element:<Reply/>
       }
     ]
   }

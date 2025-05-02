@@ -1,9 +1,9 @@
 import { useContext, useEffect } from 'react'
 import styles from './AddPost.module.css'
 import { useForm } from "react-hook-form"
-import { UserContext } from '../Layout/Layout'
 import { useNavigate } from 'react-router'
 import { addPost } from '../../../lib/api'
+import UserContext from '../../../lib/context'
 
 export const AddPost = () => {
   const { register, handleSubmit, reset } = useForm()

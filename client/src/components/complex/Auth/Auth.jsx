@@ -3,8 +3,7 @@ import styles from "./Auth.module.css"
 import { useNavigate } from "react-router"
 import { useForm } from "react-hook-form"
 import { userRegistration, userLogin } from "../../../lib/api.js"
-import { UserContext } from '../Layout/Layout.jsx'
-
+import UserContext from '../../../lib/context.js'
 export const Auth = () => {
   const navigate = useNavigate()
   const {setUser} = useContext(UserContext)

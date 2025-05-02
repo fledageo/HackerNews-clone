@@ -1,0 +1,23 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.actions{
+    display: flex;
+    gap: 10px;
+}
+.actions *{
+    font-size: 0.9rem;
+    color: grey;
+    word-spacing: -3px;
+}
+.reply{
+    text-decoration: underline;
+    color: rgb(177, 115, 0);
+    font-size: 0.9rem;
+}
+
+.childs{
+    margin-left: 5%;
+}

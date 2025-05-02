@@ -15,21 +15,35 @@ class PostController {
     }
     async getNewest(req, res) {
         try {
-            const newest = await Post.find().populate('author', "username").sort({ createdAt: -1 }).limit(5)
+            const newest = await Post.find()
+                                .populate('author', "username")
+                                .sort({ createdAt: -1 })
+                                .limit(10)
             res.send({ status: "ok", payload: newest })
         } catch (error) {
             res.send({ status: "error", message: `Something went wrong... ${error}` })
             console.log(error)
         }
     }
+    async getPosts(req, res) {
+        const {type} = req.body
+        try {
+            const posts = await Post.find({type:type})
+                                .populate('author', "username")
+                                .sort({ createdAt: -1 })
+                                .limit(10)
+            res.send({ status: "ok", payload: posts })
+        } catch (error) {
+            console.log(error)
+        }
+    }
     async getPostById(req, res) {
         const { id } = req.params
-        console.log(id)
         try {
             const post = await Post.findById(id).populate('author',"username")
             res.send({status:"ok",payload:post})
         } catch (error) {
-            cosnole.log(error)
+            console.log(error)
         }
     }
 }

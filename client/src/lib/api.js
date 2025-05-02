@@ -48,7 +48,7 @@ export async function verifyAuth() {
 export async function logoutUser() {
     try {
         const response = await fetch(`${url}/auth/logout`, {
-            method:"GET",
+            method: "GET",
             credentials: "include"
         })
         return response.json()
@@ -70,15 +70,15 @@ export async function getUserById(id) {
 }
 
 
-export async function updateUser(updatedInfo){
+export async function updateUser(updatedInfo) {
     try {
-        const response = await fetch(`${url}/user/update`,{
+        const response = await fetch(`${url}/user/update`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(updatedInfo),
-            credentials:"include"
+            credentials: "include"
         })
         return response.json()
     } catch (error) {
@@ -86,14 +86,14 @@ export async function updateUser(updatedInfo){
     }
 }
 
-export async function addPost(post){
+export async function addPost(post) {
     try {
-        const response = await fetch(`${url}/post/add`,{
-            method:"POST",
+        const response = await fetch(`${url}/post/add`, {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body:JSON.stringify(post)
+            body: JSON.stringify(post)
         })
 
         return response.json()
@@ -103,7 +103,7 @@ export async function addPost(post){
 }
 
 
-export async function getNewestPosts(){
+export async function getNewestPosts() {
     try {
         const response = await fetch(`${url}/post/get/newest`)
         return response.json()
@@ -111,7 +111,7 @@ export async function getNewestPosts(){
         console.log(error)
     }
 }
-export async function getPostById(id){
+export async function getPostById(id) {
     try {
         const response = await fetch(`${url}/post/get/${id}`)
         return response.json()
@@ -120,5 +120,64 @@ export async function getPostById(id){
     }
 }
 
+
+export async function addComment(newComment) {
+    const response = await fetch(`${url}/comment/add`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newComment)
+    })
+
+    return response.json()
+}
+
+export async function getPostComments(postId) {
+    try {
+        const response = await fetch(`${url}/comment/get/${postId}`)
+        return response.json()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function getCommentById(commentId) {
+    try {
+        const response = await fetch(`${url}/comment/getById/${commentId}`)
+        return response.json()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function replyComment(data) {
+    try {
+        const response = await fetch(`${url}/comment/reply`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        return response.json()
+    } catch (error) {
+        console.log(error)
+    }
+}
+export async function getPosts(type) {
+    try {
+        const response = await fetch(`${url}/post/get`,{
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body:JSON.stringify({type:type})
+        })
+        return response.json()
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 

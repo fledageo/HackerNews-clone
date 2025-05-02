@@ -7,8 +7,8 @@
     gap: 20px;
 }
 .url{
-    font-size: 0.8rem;
-    color: gray;
+    font-size: 0.9rem;
+    color: rgb(177, 115, 0);
     display: flex;
     align-items: center;
 }
@@ -20,9 +20,13 @@
     gap: 7px;
 }
 .actions  *{
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: grey;
 }
 .actions a:hover {
     text-decoration: underline;
+}
+
+.isUser{
+    color: green;
 }

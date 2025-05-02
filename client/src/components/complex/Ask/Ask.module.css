@@ -1,0 +1,10 @@
+.list{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 18px;
+}
+.list > li{
+    list-style: decimal;
+}
+

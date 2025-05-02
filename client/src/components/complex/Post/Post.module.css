@@ -21,3 +21,9 @@
 .add_btn {
     width: 100px;
 }
+
+.comments{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

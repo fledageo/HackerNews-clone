@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link } from 'react-router'
-
+import UserContext from "../../../lib/context.js"
 import styles from "./PostItem.module.css"
+import { calcTimestamp } from "../../../lib/helpers"
 
 
 export const PostItem = ({ post }) => {
   const [hostname, setHostname] = useState("")
-
+  const {user} = useContext(UserContext)
   useEffect(() => {
     if (post.type === "url") {
       try {
@@ -18,22 +19,6 @@ export const PostItem = ({ post }) => {
     }
   }, [])
 
-  const calcCreatedAt = (createdAt) => {
-    const calc = Date.now() - new Date(createdAt).getTime()
-    const minutes = Math.floor(calc / 1000 / 60)
-
-    if (minutes > 59) {
-      const hours = Math.floor(minutes / 60)
-      if (hours > 23) {
-        const days = Math.floor(hours / 24)
-        return days > 1 ? `${days} days ago` : `${days} day ago`
-      }
-      return hours > 1 ? `${hours} hours ago` : `${hours} hour ago`
-    }
-    return minutes > 1 ? `${minutes} minutes ago` : `${minutes} minute ago`
-
-  }
-
   return <>
     <div className={styles.container}>
       <div className={styles.header}>
@@ -42,10 +27,12 @@ export const PostItem = ({ post }) => {
       </div>
       <div className={styles.actions}>
         <span>{`${post.points} ${post.points > 1 ? "points" : "point"}`}</span>
-        <span>by <Link to={"#"}>{post.author.username}</Link></span>
-        <span>{calcCreatedAt(post.createdAt)}</span>
+        <span>
+          by <Link to={"#"} className={user?._id == post.author._id ? styles.isUser : ""}>{post.author.username}</Link>
+        </span>
+        <span>{calcTimestamp(post.createdAt)}</span>
         <span>hide</span>
-        <span><Link to={"/comments"}>{`${post.comments.length > 0 ? post.comments.length : "discuss"}`}</Link></span>
+        <Link to={`/post/${post._id}`}>{`${post.comments.length > 0 ? `${post.comments.length} comments` : "discuss"}`}</Link>
       </div>
     </div>
   </>

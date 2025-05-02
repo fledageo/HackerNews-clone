@@ -1,8 +1,8 @@
 import styles from "./Profile.module.css"
-import { UserContext } from "../Layout/Layout"
 import { useContext, useEffect, useState } from "react"
 import { updateUser } from "../../../lib/api"
 import { useNavigate } from "react-router"
+import UserContext from "../../../lib/context"
 
 export const Profile = () => {
     const [info, setInfo] = useState({ about: "", email: "" })

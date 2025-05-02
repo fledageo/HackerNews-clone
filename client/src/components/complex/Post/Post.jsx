@@ -1,31 +1,52 @@
-import { useParams } from 'react-router'
 import styles from './Post.module.css'
+import { useNavigate, useParams } from 'react-router'
 import { useContext, useEffect, useState } from 'react'
-import { getPostById } from '../../../lib/api'
+import { addComment, getPostById, getPostComments } from '../../../lib/api'
 import { PostItem } from '../../primitive/PostItem/PostItem'
-import { UserContext } from '../Layout/Layout'
+import { Comment } from '../../primitive/Comment/Comment'
+import UserContext from '../../../lib/context'
 
 export const Post = () => {
     const [post, setPost] = useState(null)
     const [newComment, setNewComment] = useState("")
+    const [comments, setComments] = useState([])
+    const { user } = useContext(UserContext)
     const { id } = useParams()
-    const currentUser = useContext(UserContext)
+    const navigate = useNavigate()
 
     useEffect(() => {
         getPostById(id)
             .then(res => {
                 if (res.status == "ok") setPost(res.payload)
-                    console.log(res.payload.author)
             })
-    }, [])
+        getPostComments(id)
+            .then(res => {
+                if (res.status == "ok") setComments(res.payload)
+            })
+    }, [id])
 
     const handleComment = () => {
-        if(newComment.trim() !== "" && currentUser){
-            const data = {
-                text: newComment,
-                author:currentUser._id,
-                parent:null
+        if (user) {
+            if (newComment.trim() !== "") {
+                const data = {
+                    text: newComment,
+                    author: user._id,
+                    childs: [],
+                    post: id,
+                    parent: id,
+                    createdAt: Date.now()
+                }
+                addComment(data)
+                    .then(res => {
+                        if (res.status == "ok") {
+                            setPost(res.payload)
+                            setComments(res.payload.comments)
+                            setNewComment("")
+                        }
+                    })
             }
+        } else {
+            navigate("/auth")
         }
     }
 
@@ -55,7 +76,11 @@ export const Post = () => {
                         <button className={styles.add_btn} onClick={handleComment}>add comment</button>
                     </div>
                     <div className={styles.comments}>
-
+                        {
+                            post.comments?.length > 0 &&
+                            comments.filter(comment => comment.parent === id)
+                                .map(comment => <Comment comment={comment} key={comment._id} allComments={comments} />)
+                        }
                     </div>
                 </>
             }

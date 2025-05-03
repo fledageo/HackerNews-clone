@@ -3,6 +3,7 @@ import { calcTimestamp } from '../../../lib/helpers'
 import styles from './Comment.module.css'
 
 export const Comment = ({ comment, allComments }) => {
+console.log(allComments)
   return (
     <div className={styles.container}>
       <div className={styles.actions}>

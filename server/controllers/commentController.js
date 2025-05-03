@@ -7,13 +7,14 @@ class ComentController {
         try {
             const comment = await Comment.create(newComment)
            
-            const updatePost = await Post.findByIdAndUpdate(newComment.post,{$push: {comments:comment}},{ new: true })
+            const updatePost = await Post.findByIdAndUpdate(newComment.post,{$push: {comments:comment._id}},{ new: true })
             .populate([
                 {
                     path:"comments",
                     populate:{path:"author",select:"username"}
                 },
             ])
+            console.log(updatePost) 
             
             res.send({ status: "ok", payload: updatePost })
         } catch (error) {
@@ -26,7 +27,6 @@ class ComentController {
             const comments = await Comment.find({ post: id }).populate([
                 { path: "author", select: "username" },
             ]);
-
             res.send({ status: "ok", payload: comments })
 
         } catch (error) {
@@ -48,14 +48,20 @@ class ComentController {
     }
 
     async reply(req, res) {
-        const data = req.body
+        const newComment = req.body
 
         try {
-            const childComment = await Comment.create(data)
-            const reply = await Comment.findByIdAndUpdate(data.parent, {
+            const childComment = await Comment.create(newComment)
+            const reply = await Comment.findByIdAndUpdate(newComment.parent, {
                 $push: { childs: childComment._id }
             })
-
+            const updatePost = await Post.findByIdAndUpdate(newComment.post,{$push: {comments:childComment._id}},{ new: true })
+            .populate([
+                {
+                    path:"comments",
+                    populate:{path:"author",select:"username"}
+                },
+            ])
             res.send({ status: "ok", payload: childComment })
         } catch (error) {
             console.log(error)

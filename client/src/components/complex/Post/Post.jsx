@@ -17,7 +17,10 @@ export const Post = () => {
     useEffect(() => {
         getPostById(id)
             .then(res => {
-                if (res.status == "ok") setPost(res.payload)
+                if (res.status == "ok") {
+                    setPost(res.payload)
+                    // setComments(res.payload.comments)
+                }
             })
         getPostComments(id)
             .then(res => {

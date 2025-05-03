@@ -11,7 +11,7 @@ export const Reply = () => {
     const { id } = useParams()
     const { user } = useContext(UserContext)
     const navigate = useNavigate()
-    console.log(comment)
+
     useEffect(() => {
         if (id) {
             getCommentById(id)

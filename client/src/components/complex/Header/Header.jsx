@@ -38,8 +38,6 @@ export const Header = () => {
                             <li><Link to="#">past</Link></li>
                             <li><Link to="#">comments</Link></li>
                             <li><Link to="/ask">ask</Link></li>
-                            <li><Link to="#">show</Link></li>
-                            <li><Link to="#">jobs</Link></li>
                             <li><span 
                                 onClick={(e) => handlePrivateNavigate("/post/add")}
                                 className={styles.privateNav}

@@ -22,7 +22,7 @@ export const PostItem = ({ post }) => {
       }
     }
 
-    if (currentPost.pointsFrom.find(elm => elm === user._id)) {
+    if (currentPost.pointsFrom.find(elm => elm === user?._id)) {
       setUpvoted(true)
     }
   }, [])

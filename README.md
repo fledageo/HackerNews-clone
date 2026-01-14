@@ -46,22 +46,4 @@ A full-stack clone of Hacker News built with React and Node.js. Users can share 
 
 4. Open http://localhost:5173
 
-## Project structure
 
-```
-client/          # React frontend
-  └── src/
-      ├── components/    # UI components (complex & primitive)
-      └── lib/          # API calls, context, helpers
-
-server/          # Node.js backend
-  ├── controllers/     # Request handlers
-  ├── models/          # MongoDB schemas
-  └── routes/          # API endpoints
-```
-
-## Cool features
-
-The nested comment system is probably the most interesting part - comments can reply to other comments infinitely deep, and the frontend recursively renders the whole tree. The app also automatically detects if you're posting a URL link or a text-based question, and handles them differently.
-
-Upvotes track which users voted to prevent duplicates, and everything uses JWT tokens stored securely in cookies for authentication.
